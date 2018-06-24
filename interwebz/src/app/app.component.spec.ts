@@ -1,29 +1,37 @@
 import {TestBed, async, ComponentFixture} from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import {Component, Input} from "@angular/core";
-import {Video} from "./video/video-uri-parser.service";
+import {Component, Input, OnInit} from "@angular/core";
+import {Video, VideoService} from "./video/video.service";
 import {VideoComponent} from "./video/video.component";
+import {Subject} from "rxjs/internal/Subject";
 
 
 @Component({
   selector: 'app-video',
-  template: '<p id="mock-video">{{ rawVideo.uri }}</p>'
+  template: '<p id="mock-video">{{ rawVideo.url }}</p>'
 })
 class MockVideoComponent {
   @Input("src") rawVideo: Video;
 }
 
-describe('AppComponent', () => {
+describe('AppComponent ->', () => {
+  const videoSubject = new Subject<Video>();
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
   let dom: any;
 
   beforeEach(async(() => {
+    const videoServiceSpy = jasmine.createSpyObj<VideoService>(['getRandomVideo']);
+    videoServiceSpy.getRandomVideo.and.returnValue(videoSubject.asObservable());
+
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
         MockVideoComponent
       ],
+      providers: [
+        { provide: VideoService, useValue: videoServiceSpy }
+      ]
     }).compileComponents();
   }));
 
@@ -31,6 +39,7 @@ describe('AppComponent', () => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
     dom = fixture.debugElement.nativeElement;
+    component.ngOnInit();
     fixture.detectChanges();
   });
 
@@ -39,6 +48,10 @@ describe('AppComponent', () => {
   }));
 
   it('should show a bootiful video', () => {
-    expect(dom.querySelector('#mock-video').textContent).toEqual('https://www.youtube.com/watch?v=zSVBcm_BZRs')
+    const videoUrl = 'https://www.youtube.com/watch?v=e4Ao-iNPPUc';
+    videoSubject.next(<Video> {url : new URL(videoUrl)});
+    fixture.detectChanges();
+
+    expect(dom.querySelector('#mock-video').textContent).toEqual(videoUrl);
   });
 });

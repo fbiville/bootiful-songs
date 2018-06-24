@@ -1,8 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { VideoComponent } from './video/video.component';
+import {AppComponent} from './app.component';
+import {VideoComponent} from './video/video.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { VideoComponent } from './video/video.component';
     VideoComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

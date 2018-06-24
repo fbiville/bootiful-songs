@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Video, VideoUriParserService} from "./video-uri-parser.service";
+import {Video, VideoService} from "./video.service";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
 @Component({
@@ -11,11 +11,11 @@ export class VideoComponent implements OnInit {
   @Input("src") rawVideo: Video;
   embeddedUrl: SafeResourceUrl;
 
-  constructor(private parser: VideoUriParserService,
+  constructor(private parser: VideoService,
               private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    const video = this.parser.parse(this.rawVideo);
+    const video = this.parser.parseUri(this.rawVideo);
     this.embeddedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${video.id}?rel=0`);
   }
 

@@ -14,6 +14,6 @@ describe('workspace-project App', () => {
 
   it('should display a nice video picked "at random"', () => {
     page.navigateTo();
-    expect(page.getEmbeddedVideoSource()).toEqual('https://www.youtube.com/embed/zSVBcm_BZRs?rel=0');
+    expect(page.getEmbeddedVideoSource()).toContain('dQw4w9WgXcQ');
   });
 });

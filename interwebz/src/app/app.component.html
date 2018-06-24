@@ -1,2 +1,4 @@
-<h1>Welcome to {{ title }}!</h1>
-<app-video [src]="video"></app-video>
+<script src="video/video.service.ts"></script><h1>Welcome to {{ title }}!</h1>
+<div *ngIf="(video$ | async) as video">
+  <app-video [src]="video"></app-video>
+</div>

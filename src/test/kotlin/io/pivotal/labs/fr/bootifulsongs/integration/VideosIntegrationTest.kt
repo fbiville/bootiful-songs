@@ -1,6 +1,8 @@
 package io.pivotal.labs.fr.bootifulsongs.integration
 
+import initVideoPayload
 import org.assertj.core.api.Assertions.assertThat
+import org.hamcrest.Matchers
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -12,11 +14,14 @@ import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import org.springframework.transaction.annotation.Transactional
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
 @AutoConfigureMockMvc
+@Transactional
 class VideosIntegrationTest {
 
     @Autowired
@@ -44,5 +49,19 @@ class VideosIntegrationTest {
         assertThat(result)
                 .describedAs("Expected row count of videos with URL $videoUri")
                 .isEqualTo(1)
+    }
+
+    @Test
+    fun `finds a video at random`() {
+        val videos = listOf(
+                "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                "https://www.youtube.com/watch?v=btPJPFnesV4",
+                "https://www.youtube.com/watch?v=k21nZsf6kHM")
+        jdbc.initVideoPayload(videos)
+
+        this.mockMvc.perform(post("/videos/random")
+                .accept(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk)
+                .andExpect(jsonPath("url", Matchers.isIn(videos)))
     }
 }

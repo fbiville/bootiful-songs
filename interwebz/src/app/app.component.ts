@@ -1,12 +1,20 @@
-import { Component } from '@angular/core';
-import {Video} from "./video/video-uri-parser.service";
+import {Component, OnInit} from '@angular/core';
+import {Video, VideoService} from "./video/video.service";
+import {Observable} from "rxjs/internal/Observable";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Bootiful songs';
-  video: Video = {uri : new URL("https://www.youtube.com/watch?v=zSVBcm_BZRs")}
+  video$: Observable<Video>;
+
+  constructor(private videoService: VideoService) {}
+
+  ngOnInit(): void {
+    this.video$ = this.videoService.getRandomVideo();
+  }
+
 }

@@ -1,0 +1,22 @@
+#!/bin/bash
+set -ex
+
+mvn_pid=-1
+ng_pid=-1
+nginx_pid=-1
+
+finish() {
+	echo "Cleaning up now"
+	kill -9 $mvn_pid $ng_pid $nginx_pid
+}
+
+trap finish KILL QUIT INT
+
+mvn spring-boot:run &
+mvn_pid=$!
+cd interwebz; yarn ng serve &
+ng_pid=$!
+cd ..
+nginx -c $(pwd)/nginx.conf &
+nginx_pid=$!
+
