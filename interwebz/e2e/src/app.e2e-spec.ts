@@ -11,4 +11,9 @@ describe('workspace-project App', () => {
     page.navigateTo();
     expect(page.getParagraphText()).toEqual('Welcome to Bootiful songs!');
   });
+
+  it('should display a nice video picked "at random"', () => {
+    page.navigateTo();
+    expect(page.getEmbeddedVideoSource()).toEqual('https://www.youtube.com/embed/zSVBcm_BZRs?rel=0');
+  });
 });
