@@ -1,18 +1,17 @@
 package io.pivotal.labs.fr.bootifulsongs
 
-import com.fasterxml.jackson.annotation.JsonInclude
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.ManyToOne
 import javax.persistence.Table
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
-@Table(name = "video")
-data class Video(
+@Table(name = "video_like")
+data class VideoLike(
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: Int = -1,
-        val url: String,
-        var providerId: String = ""
+        @ManyToOne
+        val video: Video
 )

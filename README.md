@@ -15,7 +15,7 @@ At first, the random video endpoint returns a `204 No Content`, until some video
 Just POST a video (or more!) as follows:
 
 ```
-$> curl -X POST -H 'Content-Type:application/json' --data '{"url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"}' http://localhost:8080/videos
+$> curl -X POST -H 'Content-Type:application/json' --data '{"url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"}' http://localhost:8080/api/videos
 ```
 
 ## End-to-end tests

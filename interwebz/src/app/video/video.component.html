@@ -5,4 +5,7 @@
           frameborder="0"
           allow="autoplay; encrypted-media"
           allowfullscreen></iframe>
+
+  <button [disabled]="clicked" id="like" (click)="sendLike()">Like</button>
+  <div *ngIf="likeCount$" id="likeCount">{{likeCount$ | async}}</div>
 </div>

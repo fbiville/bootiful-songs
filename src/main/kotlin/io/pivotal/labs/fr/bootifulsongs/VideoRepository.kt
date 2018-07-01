@@ -10,4 +10,6 @@ interface VideoRepository : CrudRepository<Video, Int> {
 
     @Query(value = "SELECT * FROM video ORDER BY RAND() LIMIT 1", nativeQuery = true)
     fun findOneAtRandom(): Optional<Video>
+
+    fun findOneByUrlEndsWith(providerId: String): Optional<Video>
 }

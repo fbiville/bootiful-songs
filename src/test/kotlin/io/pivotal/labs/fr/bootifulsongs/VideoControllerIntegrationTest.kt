@@ -32,7 +32,7 @@ class VideoControllerIntegrationTest {
 
     @Test
     fun `finds all videos`() {
-        this.mockMvc.perform(get("/videos"))
+        this.mockMvc.perform(get("/api/videos"))
                 .andExpect(status().isOk)
     }
 
@@ -40,7 +40,7 @@ class VideoControllerIntegrationTest {
     fun `registers a new video`() {
         val videoUri = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 
-        this.mockMvc.perform(post("/videos")
+        this.mockMvc.perform(post("/api/videos")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content("{\"url\": \"$videoUri\"}"))
                 .andExpect(status().isCreated)
@@ -59,7 +59,7 @@ class VideoControllerIntegrationTest {
                 "https://www.youtube.com/watch?v=k21nZsf6kHM")
         jdbc.initVideoPayload(videos)
 
-        this.mockMvc.perform(post("/videos/random")
+        this.mockMvc.perform(post("/api/videos/random")
                 .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk)
                 .andExpect(jsonPath("url", isIn(videos)))
@@ -69,7 +69,7 @@ class VideoControllerIntegrationTest {
     fun `enriches video output with provider id`() {
         jdbc.initVideoPayload("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 
-        this.mockMvc.perform(post("/videos/random")
+        this.mockMvc.perform(post("/api/videos/random")
                 .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk)
                 .andExpect(jsonPath("providerId", equalTo("dQw4w9WgXcQ")))

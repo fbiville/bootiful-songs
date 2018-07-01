@@ -10,13 +10,24 @@ import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 export class VideoComponent implements OnInit {
   @Input("src") rawVideo: Video;
   embeddedUrl: SafeResourceUrl;
+  clicked = false;
+  likeCount$;
 
-  constructor(private parser: VideoService,
+  constructor(private service: VideoService,
               private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-    const video = this.parser.parseUri(this.rawVideo);
-    this.embeddedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${video.id}?rel=0`);
+    let embedUrl = `https://www.youtube.com/embed/${this.rawVideo.providerId}?rel=0`;
+    this.embeddedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
+  }
+
+  sendLike() {
+    if (!this.clicked) {
+      this.clicked = true;
+      this.service.likeVideo(this.rawVideo).subscribe(() => {
+        this.likeCount$ = this.service.getLikes(this.rawVideo);
+      });
+    }
   }
 
 }

@@ -1,24 +1,14 @@
-import {Video, VideoService, YoutubeVideo} from './video.service';
+import {Video, VideoService} from './video.service';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {TestBed} from "@angular/core/testing";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs/internal/Observable";
 
 describe('VideoService ->', () => {
 
-  describe('when parsing videos ->', () => {
-    const httpMock = jasmine.createSpyObj<HttpClient>(["post"]);
-    httpMock.post.and.returnValue(Observable.create());
-    const service = new VideoService(httpMock);
+  describe('when interacting with video API ->', () => {
+    const providerId = "dQw4w9WgXcQ";
+    const rawUrl = "https://www.youtube.com/watch?v=" + providerId;
+    const video = <Video> {url: new URL(rawUrl), providerId: providerId};
 
-    it('should support Youtube', () => {
-      const result = service.parseUri({url: new URL("https://www.youtube.com/watch?v=dQw4w9WgXcQ")});
-
-      expect(result).toEqual(new YoutubeVideo("dQw4w9WgXcQ"))
-    });
-  });
-
-  describe('when fetching videos ->', () => {
     let httpMock: HttpTestingController;
     let service: VideoService;
 
@@ -36,14 +26,49 @@ describe('VideoService ->', () => {
       httpMock.verify();
     });
 
-    it('should get one at random', () => {
+    it('should get one at random', (done: DoneFn) => {
       service.getRandomVideo().subscribe((video: Video) => {
-        expect(video).toEqual(<Video> {url: new URL("https://www.youtube.com/watch?v=dQw4w9WgXcQ")});
+        expect(video).toEqual(<Video> {
+          url: new URL(`https://www.youtube.com/watch?v=${providerId}`),
+          providerId: providerId
+        });
+        done();
       });
 
-      const req = httpMock.expectOne(`/videos/random`);
+      const req = httpMock.expectOne(`/api/videos/random`);
       expect(req.request.method).toBe("POST");
-      req.flush({"url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"});
+      req.flush({"url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ", "providerId": providerId});
+    });
+
+    it('should not retrieve anything when there are no videos', () => {
+      service.getRandomVideo().subscribe(() => {
+        fail("thou shalt not pass!");
+      });
+
+      const req = httpMock.expectOne(`/api/videos/random`);
+      expect(req.request.method).toBe("POST");
+      req.flush(null);
+    });
+
+    it('should post a like', (done: DoneFn) => {
+      service.likeVideo(video).subscribe(() => {
+        done();
+      });
+
+      const req = httpMock.expectOne(`/api/likes/${providerId}`);
+      expect(req.request.method).toBe("PUT");
+      req.flush({});
+    });
+
+    it("should retrieve likes", (done: DoneFn) => {
+      service.getLikes(video).subscribe((count: number) => {
+        expect(count).toEqual(42);
+        done();
+      });
+
+      const req = httpMock.expectOne(`/api/likes/${providerId}`);
+      expect(req.request.method).toBe("GET");
+      req.flush({count: 42});
     });
   });
 });
