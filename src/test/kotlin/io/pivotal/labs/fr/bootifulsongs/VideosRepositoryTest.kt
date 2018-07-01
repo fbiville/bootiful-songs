@@ -1,7 +1,5 @@
-package io.pivotal.labs.fr.bootifulsongs.integration
+package io.pivotal.labs.fr.bootifulsongs
 
-import initVideoPayload
-import io.pivotal.labs.fr.bootifulsongs.repository.VideosRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith

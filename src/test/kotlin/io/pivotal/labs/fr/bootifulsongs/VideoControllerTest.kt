@@ -1,6 +1,5 @@
-package io.pivotal.labs.fr.bootifulsongs.repository
+package io.pivotal.labs.fr.bootifulsongs
 
-import io.pivotal.labs.fr.bootifulsongs.domain.Video
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import org.mockito.Mockito.`when`

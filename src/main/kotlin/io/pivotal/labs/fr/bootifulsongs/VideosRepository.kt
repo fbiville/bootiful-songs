@@ -1,6 +1,5 @@
-package io.pivotal.labs.fr.bootifulsongs.repository
+package io.pivotal.labs.fr.bootifulsongs
 
-import io.pivotal.labs.fr.bootifulsongs.domain.Video
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.CrudRepository
 import org.springframework.data.rest.core.annotation.RepositoryRestResource

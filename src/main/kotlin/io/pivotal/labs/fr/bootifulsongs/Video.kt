@@ -1,4 +1,4 @@
-package io.pivotal.labs.fr.bootifulsongs.domain
+package io.pivotal.labs.fr.bootifulsongs
 
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue

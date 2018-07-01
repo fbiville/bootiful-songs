@@ -1,6 +1,5 @@
-package io.pivotal.labs.fr.bootifulsongs.integration
+package io.pivotal.labs.fr.bootifulsongs
 
-import initVideoPayload
 import org.assertj.core.api.Assertions.assertThat
 import org.hamcrest.Matchers
 import org.junit.Test
@@ -22,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
-class VideosIntegrationTest {
+class VideosControllerIntegrationTest {
 
     @Autowired
     lateinit var mockMvc: MockMvc

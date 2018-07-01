@@ -1,6 +1,5 @@
-package io.pivotal.labs.fr.bootifulsongs.repository
+package io.pivotal.labs.fr.bootifulsongs
 
-import io.pivotal.labs.fr.bootifulsongs.domain.Video
 import org.springframework.data.rest.webmvc.RepositoryRestController
 import org.springframework.hateoas.Resource
 import org.springframework.http.ResponseEntity
