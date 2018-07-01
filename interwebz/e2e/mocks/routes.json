@@ -1,0 +1,3 @@
+{
+  "/api/:resource/random": "/:resource/1"
+}
