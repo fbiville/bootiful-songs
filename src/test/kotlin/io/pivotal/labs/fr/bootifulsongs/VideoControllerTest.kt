@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity
 import java.util.*
 
 class VideoControllerTest {
-    val repository = mock(VideosRepository::class.java)
+    val repository = mock(VideoRepository::class.java)
     val controller = VideoController(repository)
 
     @Test

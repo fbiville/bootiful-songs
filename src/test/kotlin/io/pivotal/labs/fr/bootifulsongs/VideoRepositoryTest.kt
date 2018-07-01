@@ -10,10 +10,10 @@ import org.springframework.test.context.junit4.SpringRunner
 
 @RunWith(SpringRunner::class)
 @DataJpaTest
-class VideosRepositoryTest {
+class VideoRepositoryTest {
 
     @Autowired
-    lateinit var repository: VideosRepository
+    lateinit var repository: VideoRepository
 
     @Autowired
     lateinit var jdbc: JdbcTemplate

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.ResponseBody
 
 @RepositoryRestController
-class VideoController(val repository: VideosRepository) {
+class VideoController(val repository: VideoRepository) {
 
     @PostMapping("/videos/random")
     @ResponseBody

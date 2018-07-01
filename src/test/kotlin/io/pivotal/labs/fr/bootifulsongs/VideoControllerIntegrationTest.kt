@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
-class VideosControllerIntegrationTest {
+class VideoControllerIntegrationTest {
 
     @Autowired
     lateinit var mockMvc: MockMvc
