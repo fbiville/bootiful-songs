@@ -1,7 +1,8 @@
 package io.pivotal.labs.fr.bootifulsongs
 
 import org.assertj.core.api.Assertions.assertThat
-import org.hamcrest.Matchers
+import org.hamcrest.Matchers.equalTo
+import org.hamcrest.Matchers.isIn
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -61,6 +62,18 @@ class VideoControllerIntegrationTest {
         this.mockMvc.perform(post("/videos/random")
                 .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk)
-                .andExpect(jsonPath("url", Matchers.isIn(videos)))
+                .andExpect(jsonPath("url", isIn(videos)))
+    }
+
+    @Test
+    fun `enriches video output with provider id`() {
+        jdbc.initVideoPayload("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+
+        this.mockMvc.perform(post("/videos/random")
+                .accept(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk)
+                .andExpect(jsonPath("providerId", equalTo("dQw4w9WgXcQ")))
+
+
     }
 }
