@@ -43,10 +43,6 @@ describe('AppComponent ->', () => {
     fixture.detectChanges();
   });
 
-  it(`should have as title 'Bootiful songs'`, async(() => {
-    expect(dom.querySelector('h1').textContent).toEqual('Welcome to Bootiful songs!');
-  }));
-
   it('should show a bootiful video', () => {
     const videoUrl = 'https://www.youtube.com/watch?v=e4Ao-iNPPUc';
     videoSubject.next(<Video> {url : new URL(videoUrl)});

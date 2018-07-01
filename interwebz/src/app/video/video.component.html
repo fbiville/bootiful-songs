@@ -1,4 +1,4 @@
-<div *ngIf="embeddedUrl">
+<div id="video" *ngIf="embeddedUrl">
   <iframe width="560"
           height="315"
           [src]="embeddedUrl"
@@ -6,6 +6,8 @@
           allow="autoplay; encrypted-media"
           allowfullscreen></iframe>
 
-  <button [disabled]="clicked" id="like" (click)="sendLike()">Like</button>
-  <div *ngIf="likeCount$" id="likeCount">{{likeCount$ | async}}</div>
+  <section id="likeControls">
+    <button [disabled]="clicked" id="like" (click)="sendLike()">+1</button>
+    <div *ngIf="likeCount$" id="likeCount">{{likeCount$ | async}} ♡</div>
+  </section>
 </div>

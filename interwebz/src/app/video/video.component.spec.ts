@@ -87,7 +87,7 @@ describe('VideoComponent ->', () => {
       likeButton.click();
       fixture.detectChanges();
 
-      expect(dom.querySelector('#likeCount').textContent).toEqual("42");
+      expect(dom.querySelector('#likeCount').textContent).toEqual("42 ♡");
     });
   });
 

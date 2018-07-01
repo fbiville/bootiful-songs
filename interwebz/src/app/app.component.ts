@@ -8,7 +8,6 @@ import {Observable} from "rxjs/internal/Observable";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Bootiful songs';
   video$: Observable<Video>;
 
   constructor(private videoService: VideoService) {}
