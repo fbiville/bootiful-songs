@@ -1,0 +1,17 @@
+https://www.youtube.com/watch?v=dQw4w9WgXcQ
+
+companion object {
+    const val youtubeVideoRegex = "^(?:(?:https?)://)?(?:www.)?youtube.com/watch?(?:.*)v=([A-Za-z0-9._%-]{11}).*"
+}
+
+import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+constructor(private service: VideoService,
+              private sanitizer: DomSanitizer) { }
+
+ngOnInit() {
+    let embedUrl = `https://www.youtube.com/embed/${this.rawVideo.providerId}?rel=0`;
+    this.embeddedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
+}
