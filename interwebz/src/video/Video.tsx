@@ -5,7 +5,7 @@ class Video extends React.Component<VideoProps> {
 
         const url = this.props.url;
         return (
-            <div>
+            <div className="video">
                 <iframe
                 width="560"
                 height="315"
