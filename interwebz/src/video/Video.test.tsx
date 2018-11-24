@@ -5,7 +5,7 @@ import Video from './Video';
 it('displays a youtube video', () => {
     const props = {
         url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-    }
+    };
 
     const video = document.createElement('div');
     ReactDOM.render(<Video {...props} />, video);

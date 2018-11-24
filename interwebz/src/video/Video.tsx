@@ -7,17 +7,18 @@ class Video extends React.Component<VideoProps> {
         return (
             <div className="video">
                 <iframe
-                width="560"
-                height="315"
-                src={url}
-                allow="autoplay; encrypted-media" />
+                    width="560"
+                    height="315"
+                    src={url}
+                    allow="autoplay; encrypted-media"
+                />
             </div>
         );
     }
 }
 
-class VideoProps {
-    url: string
+export interface VideoProps {
+    url: string;
 }
 
 export default Video;
