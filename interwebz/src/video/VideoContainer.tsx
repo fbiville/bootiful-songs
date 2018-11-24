@@ -1,10 +1,10 @@
 import * as React from 'react';
+import VideoService from '../service/VideoService';
 import Video from './Video';
-const VideoService = require("../service/VideoService");
 
 class VideoContainer extends React.Component {
     render() {
-        return <Video url={this.getUrl()} />
+        return <Video url={this.getUrl()} />;
     }
 
     getUrl() {
