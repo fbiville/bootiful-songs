@@ -1,5 +1,7 @@
+import {HttpService} from "./HttpService";
+
 export default class VideoService {
-    static getRandomUrl(): string {
-        return 'https://www.youtube.com/embed/dQw4w9WgXcQ';
+    static getRandomUrl(): Promise<string> {
+        return HttpService.fetch('api/videos/random').then(resp => resp.json());
     }
 }

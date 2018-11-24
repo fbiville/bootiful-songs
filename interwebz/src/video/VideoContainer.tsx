@@ -2,13 +2,24 @@ import * as React from 'react';
 import VideoService from '../service/VideoService';
 import Video from './Video';
 
-class VideoContainer extends React.Component {
-    render() {
-        return <Video url={this.getUrl()} />;
+class VideoContainer extends React.Component<{}, {url: string}> {
+    constructor(props: {}) {
+        super(props);
+
+        this.state = {
+            url: ''
+        };
     }
 
-    getUrl() {
-        return VideoService.getRandomUrl();
+    async componentDidMount() {
+        const url = await VideoService.getRandomUrl();
+        this.setState({
+            url: url
+        });
+    }
+
+    render() {
+        return <Video url={this.state.url} />;
     }
 }
 
