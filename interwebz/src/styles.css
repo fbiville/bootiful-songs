@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    background-image: url("./assets/img/wallpaper.jpg");
+    background-size: cover;
+}
+
+h1 {
+    text-align: center;
+}
+
+.videoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dancing-banana {
+    width: 20vh;
+}
