@@ -1,6 +1,7 @@
 import * as React from 'react';
 import VideoService from '../service/VideoService';
 import Video from './Video';
+import {YoutubeVideo} from "../domain/VideoTypes";
 
 class VideoContainer extends React.Component<{}, {url: string}> {
     constructor(props: {}) {
@@ -14,8 +15,12 @@ class VideoContainer extends React.Component<{}, {url: string}> {
     async componentDidMount() {
         const video = await VideoService.getRandomUrl();
         this.setState({
-            url: video.url
+            url: this.getEmbedUrl(video)
         });
+    }
+
+    getEmbedUrl(video: YoutubeVideo) {
+        return 'https://www.youtube.com/embed/' + video.providerId
     }
 
     render() {

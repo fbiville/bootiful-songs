@@ -1,4 +1,4 @@
-export interface Video {
+export interface YoutubeVideo {
     url: string;
     providerId: string;
 }

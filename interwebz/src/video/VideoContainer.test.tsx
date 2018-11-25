@@ -4,12 +4,12 @@ import * as Sinon from 'sinon';
 import VideoService from '../service/VideoService';
 import VideoContainer from './VideoContainer';
 import { SinonStub } from 'sinon';
-import {Video} from "../domain/VideoTypes";
+import {YoutubeVideo} from "../domain/VideoTypes";
 
 let getUrlStub: SinonStub;
-let videoPromise: Promise<Video>;
+let videoPromise: Promise<YoutubeVideo>;
 
-const VIDEO: Video = {
+const VIDEO: YoutubeVideo = {
     url: 'https://www.youtube.com/watch?v=supercoolvideo',
     providerId: 'supercoolvideo'
 };
@@ -33,5 +33,5 @@ it('renders a video from its id', async () => {
 
     expect(container!.querySelector('iframe')).toBeTruthy();
     const video = container!.querySelector('iframe')!;
-    expect(video.getAttribute('src')).toBe('https://www.youtube.com/watch?v=supercoolvideo');
+    expect(video.getAttribute('src')).toBe('https://www.youtube.com/embed/supercoolvideo');
 });

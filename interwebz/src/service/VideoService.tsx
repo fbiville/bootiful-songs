@@ -1,8 +1,8 @@
 import { HttpService } from './HttpService';
-import {Video} from "../domain/VideoTypes";
+import {YoutubeVideo} from "../domain/VideoTypes";
 
 export default class VideoService {
-    static getRandomUrl(): Promise<Video> {
+    static getRandomUrl(): Promise<YoutubeVideo> {
         return HttpService.fetch('api/videos/random', {
             method: 'POST'
         })
