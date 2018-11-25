@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import * as Sinon from 'sinon';
 import VideoService from '../service/VideoService';
 import VideoContainer from './VideoContainer';
-import {SinonStub} from "sinon";
+import { SinonStub } from 'sinon';
 
 let getUrlStub: SinonStub;
 let urlPromise: Promise<string>;
@@ -14,7 +14,6 @@ beforeEach(() => {
     urlPromise = Promise.resolve('https://www.youtube.com/watch?v=supercoolvideo');
     getUrlStub.returns(urlPromise);
 });
-
 
 afterEach(() => {
     getUrlStub.restore();

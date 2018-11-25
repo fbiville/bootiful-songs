@@ -1,4 +1,4 @@
-import {HttpService} from "./HttpService";
+import { HttpService } from './HttpService';
 
 export default class VideoService {
     static getRandomUrl(): Promise<string> {
