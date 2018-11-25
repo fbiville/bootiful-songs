@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './Video.css';
 
 class Video extends React.Component<VideoProps> {
     public render() {

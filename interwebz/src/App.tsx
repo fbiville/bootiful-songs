@@ -1,18 +1,20 @@
 import * as React from 'react';
 import './App.css';
+import './styles.css';
+import banana from './assets/img/banana.gif';
 
-import logo from './logo.svg';
 import VideoContainer from './video/VideoContainer';
 
 class App extends React.Component {
   public render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <VideoContainer/>
+          <h1>Welcome to 👢iful songs!</h1>
+          <div className="videoContainer">
+              <img className="dancing-banana" src={banana} alt="Dancing banana"/>
+                <VideoContainer/>
+              <img className="dancing-banana" src={banana} alt="Dancing banana"/>
+          </div>
       </div>
     );
   }
