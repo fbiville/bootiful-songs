@@ -1,7 +1,7 @@
 import * as React from 'react';
 import VideoService from '../service/VideoService';
 import Video from './Video';
-import {YoutubeVideo} from "../domain/VideoTypes";
+import { YoutubeVideo } from '../domain/VideoTypes';
 
 class VideoContainer extends React.Component<{}, {url: string}> {
     constructor(props: {}) {
@@ -20,7 +20,7 @@ class VideoContainer extends React.Component<{}, {url: string}> {
     }
 
     getEmbedUrl(video: YoutubeVideo) {
-        return 'https://www.youtube.com/embed/' + video.providerId
+        return 'https://www.youtube.com/embed/' + video.providerId;
     }
 
     render() {

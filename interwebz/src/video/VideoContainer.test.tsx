@@ -4,7 +4,7 @@ import * as Sinon from 'sinon';
 import VideoService from '../service/VideoService';
 import VideoContainer from './VideoContainer';
 import { SinonStub } from 'sinon';
-import {YoutubeVideo} from "../domain/VideoTypes";
+import { YoutubeVideo } from '../domain/VideoTypes';
 
 let getUrlStub: SinonStub;
 let videoPromise: Promise<YoutubeVideo>;
