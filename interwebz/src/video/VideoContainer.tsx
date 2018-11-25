@@ -12,9 +12,9 @@ class VideoContainer extends React.Component<{}, {url: string}> {
     }
 
     async componentDidMount() {
-        const url = await VideoService.getRandomUrl();
+        const video = await VideoService.getRandomUrl();
         this.setState({
-            url: url
+            url: video.url
         });
     }
 

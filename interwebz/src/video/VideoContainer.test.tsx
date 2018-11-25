@@ -4,15 +4,21 @@ import * as Sinon from 'sinon';
 import VideoService from '../service/VideoService';
 import VideoContainer from './VideoContainer';
 import { SinonStub } from 'sinon';
+import {Video} from "../domain/VideoTypes";
 
 let getUrlStub: SinonStub;
-let urlPromise: Promise<string>;
+let videoPromise: Promise<Video>;
+
+const VIDEO: Video = {
+    url: 'https://www.youtube.com/watch?v=supercoolvideo',
+    providerId: 'supercoolvideo'
+};
 
 beforeEach(() => {
     getUrlStub = Sinon.stub(VideoService, 'getRandomUrl');
 
-    urlPromise = Promise.resolve('https://www.youtube.com/watch?v=supercoolvideo');
-    getUrlStub.returns(urlPromise);
+    videoPromise = Promise.resolve(VIDEO);
+    getUrlStub.returns(videoPromise);
 });
 
 afterEach(() => {
@@ -23,7 +29,7 @@ it('renders a video from its id', async () => {
     const container = document.createElement('div');
     ReactDOM.render(<VideoContainer/>, container);
 
-    await urlPromise;
+    await videoPromise;
 
     expect(container!.querySelector('iframe')).toBeTruthy();
     const video = container!.querySelector('iframe')!;
