@@ -4,92 +4,12 @@ companion object {
     const val youtubeVideoRegex = "^(?:(?:https?)://)?(?:www.)?youtube.com/watch?(?:.*)v=([A-Za-z0-9._%-]{11}).*"
 }
 
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
+<iframe
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+    allow="autoplay;
+    encrypted-media"
+    allowfullscreen>
+</iframe>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-constructor(private service: VideoService,
-              private sanitizer: DomSanitizer) { }
-
-ngOnInit() {
-    let embedUrl = `https://www.youtube.com/embed/${this.rawVideo.providerId}?rel=0`;
-    this.embeddedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
-}
-
-
-2x autour de app-root
-<img class="dancing-banana" src="assets/img/banana.gif" alt="Dancing banana"/>
-
-STYLES.css
-body {
-  font-family: Roboto, Arial, Helvetica, sans-serif;
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  background-image: url("/assets/img/wallpaper.jpg");
-  background-size: cover;
-}
-
-h1 {
-  text-align: center;
-}
-
-.dancing-banana {
-  width: 20vh;
-}
-
-video.component.css
-#video {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-iframe {
-  border: 5px dashed black;
-}
-
-#likeControls {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-}
-
-#like, #likeCount {
-  margin-top: 5px;
-  font-size: 20pt;
-  background-color: white;
-}
-
-#like {
-  cursor: pointer;
-}
-
-#like[disabled] {
-  cursor: not-allowed;
-}
-
-#likeCount {
-  margin-left: 5px;
-  padding: 0 5px;
-  font-variant: small-caps;
-}
-
-HTML iframe
-
-<div id="video" *ngIf="embeddedUrl">
-  <iframe width="560"
-          height="315"
-          [src]="embeddedUrl"
-          frameborder="0"
-          allow="autoplay; encrypted-media"
-          allowfullscreen></iframe>
-
-  <section id="likeControls">
-    <button [disabled]="clicked" id="like" (click)="sendLike()">+1</button>
-    <div *ngIf="likeCount$" id="likeCount">{{likeCount$ | async}} ♡</div>
-  </section>
-</div>
