@@ -6,13 +6,12 @@ companion object {
 
 import * as ReactDOM from "react-dom";
 
-<iframe
-    width="560"
-    height="315"
-    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-    allow="autoplay;
-    encrypted-media"
-    allowfullscreen>
-</iframe>
+            <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+            />
 
 curl -X POST -H 'Content-Type:application/json' --data '{"url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"}' http://localhost:8080/api/videos
