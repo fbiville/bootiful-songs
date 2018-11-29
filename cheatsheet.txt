@@ -4,6 +4,8 @@ companion object {
     const val youtubeVideoRegex = "^(?:(?:https?)://)?(?:www.)?youtube.com/watch?(?:.*)v=([A-Za-z0-9._%-]{11}).*"
 }
 
+import * as ReactDOM from "react-dom";
+
 <iframe
     width="560"
     height="315"
