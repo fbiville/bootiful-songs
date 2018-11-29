@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './App.css';
 import './styles.css';
+import './video/Video.css';
 import banana from './assets/img/banana.gif';
 
 class App extends React.Component {
